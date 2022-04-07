@@ -1,0 +1,40 @@
+from tkinter import *
+from gtts import gTTS
+from playsound import playsound
+
+root = Tk()
+# geometry root. ('350X300')
+root.configure(bg = 'ghost white')
+root.title("Text to Speech")
+Label(root, text = "TEXT TO SPEECH",  font = "arial 20 bold",  bg = 'white smoke').pack()
+Label(root, text = "PrInCe KuMaR",  font = 'arial 15 bold', bg = 'white smoke',  width = ' 20 ').pack(side = 'bottom')
+Msg =  StringVar()
+Label(root, text = "Enter Text " , font = 'arial  15 bold', bg = 'white smoke').place(x =  20 , y =60)
+entery_field = Entry(root, textvariable=Msg, width = '50')
+entery_field.place(x = 20, y = 100)
+
+
+# Function to convet Text to Speech
+def Text_to_speech():
+    Message = entery_field.get()
+    speech = gTTS(text = Message)
+    speech.save('PrinceSpeech1.mp3')
+    playsound('PrinceSpeech1.mp3')
+
+
+# Exit Function
+def Exit():
+    root.destroy()
+
+# reset Funtion
+def Reset():
+    Msg.set(" ")
+
+#define button
+
+Button(root, text = "PLay",  font = 'arial  15  bold', command= Text_to_speech, width = '4').place(x=25, y =  140)
+
+Button (root, text = "Exit", font = 'arail  15  bold', width = ' 4',  command= Exit, bg = 'OrangeRed1').place(x = 100,  y = 140)
+
+Button(root, text = "Reset", font = 'arial  15  bold', width =  '4', command=Reset).place(x = 175,  y = 140)
+root.mainloop()
